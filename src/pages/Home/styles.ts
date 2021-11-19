@@ -5,4 +5,6 @@ export const Container = styled.View`
   background-color: #ebebeb;
 `;
 
-export const Content = styled.View``;
+export const Content = styled.View`
+  padding: 70px 0;
+`;

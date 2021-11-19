@@ -13,7 +13,9 @@ export const Container = styled.View`
   padding-left: 20px;
 `;
 
-export const TextInput = styled.TextInput``;
+export const TextInput = styled.TextInput`
+  width: 80%;
+`;
 
 export const Button = styled.TouchableOpacity`
   height: 100%;

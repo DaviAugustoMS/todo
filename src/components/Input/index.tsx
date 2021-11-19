@@ -2,14 +2,22 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 import {Container, TextInput, Button} from './styles';
+import {TouchableOpacityProps} from 'react-native';
 
-Icon.loadFont();
+interface InputProps extends TouchableOpacityProps {
+  setItem: () => void;
+  item: string;
+}
 
-const Input = () => {
+const Input = ({setItem, onPress, item}: InputProps) => {
   return (
     <Container>
-      <TextInput placeholder="Adicione uma tarefa" />
-      <Button>
+      <TextInput
+        value={item}
+        onChangeText={setItem}
+        placeholder="Adicione uma tarefa"
+      />
+      <Button onPress={onPress}>
         <Icon name="right" size={24} />
       </Button>
     </Container>
