@@ -49,6 +49,15 @@ const Home = () => {
     Alert.alert('Alteraçào', 'Task alterado com sucesso.');
   };
 
+  const createThreeButtonAlert = (id: string) =>
+    Alert.alert('Alerta', 'Tem certeza que deseja excluir esta task?', [
+      {
+        text: 'Não',
+        onPress: () => console.log('Cancel Pressed'),
+      },
+      {text: 'Sim', onPress: () => handleDeleteItem(id)},
+    ]);
+
   const handleDeleteItem = (id: string) => {
     setItems(oldState => oldState.filter(item => item.id !== id));
     Alert.alert('Deletado', 'Task deletada com sucesso.');
@@ -65,7 +74,7 @@ const Home = () => {
       <Content>
         <List
           items={items}
-          handleDeleteItem={handleDeleteItem}
+          handleDeleteItem={createThreeButtonAlert}
           active={active}
           setActive={setActive}
           edit={edit}
