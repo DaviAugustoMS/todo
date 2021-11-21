@@ -26,6 +26,12 @@ export const Text = styled.Text`
   font-weight: bold;
 `;
 
+export const ViewButton = styled.View`
+  flex-direction: row;
+  width: 60px;
+  justify-content: space-between;
+`;
+
 export const Button = styled.TouchableOpacity``;
 
 export const Line = styled.View`
@@ -35,3 +41,5 @@ export const Line = styled.View`
   position: absolute;
   top: 20%;
 `;
+
+export const Input = styled.TextInput``;

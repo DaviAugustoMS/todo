@@ -2,6 +2,7 @@
 import React from 'react';
 import CheckBox from '@react-native-community/checkbox';
 import Icon from 'react-native-vector-icons/Feather';
+import Close from 'react-native-vector-icons/AntDesign';
 import {TouchableOpacityProps} from 'react-native';
 import {
   Container,
@@ -10,6 +11,8 @@ import {
   Button,
   CheckBoxStyled,
   Line,
+  ViewButton,
+  Input,
 } from './styles';
 
 interface IItem extends TouchableOpacityProps {
@@ -17,9 +20,23 @@ interface IItem extends TouchableOpacityProps {
   task: string;
   setActive: Function;
   active: boolean;
+  edit: boolean;
+  setEdit: Function;
+  setUpdate: Function;
+  handleUpdateTask: Function;
 }
 
-const Item = ({active, styleContainer, task, setActive, onPress}: IItem) => {
+const Item = ({
+  active,
+  styleContainer,
+  task,
+  setActive,
+  onPress,
+  edit,
+  setEdit,
+  setUpdate,
+  handleUpdateTask,
+}: IItem) => {
   console.log(task);
 
   return (
@@ -39,13 +56,39 @@ const Item = ({active, styleContainer, task, setActive, onPress}: IItem) => {
       </CheckBoxStyled>
 
       <TextView>
-        <Text style={{color: active ? '#1DB863' : '#666'}}>{task} </Text>
+        {edit ? (
+          <Input
+            // value={edit ? '' : task}
+            onChangeText={text => setUpdate(text)}
+          />
+        ) : (
+          <Text style={{color: active ? '#1DB863' : '#666'}}>{task} </Text>
+        )}
         {active && <Line />}
       </TextView>
+      <ViewButton>
+        {edit ? (
+          <>
+            {/*  @ts-ignore */}
+            <Button onPress={handleUpdateTask}>
+              <Close name="check" size={20} color="#B2B2B2" />
+            </Button>
+            <Button onPress={() => setEdit(false)}>
+              <Close name="close" size={20} color="#B2B2B2" />
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button onPress={() => setEdit(true)}>
+              <Icon name="edit-3" size={20} color="#B2B2B2" />
+            </Button>
 
-      <Button onPress={onPress}>
-        <Icon name="trash-2" size={20} color="#B2B2B2" />
-      </Button>
+            <Button onPress={onPress}>
+              <Icon name="trash-2" size={20} color="#B2B2B2" />
+            </Button>
+          </>
+        )}
+      </ViewButton>
     </Container>
   );
 };

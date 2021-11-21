@@ -10,9 +10,22 @@ interface ILists {
   handleDeleteItem: Function;
   active: boolean;
   setActive: Function;
+  edit: boolean;
+  setEdit: Function;
+  setUpdate: Function;
+  handleUpdateTask: Function;
 }
 
-const List = ({items, handleDeleteItem, active, setActive}: ILists) => {
+const List = ({
+  items,
+  handleDeleteItem,
+  active,
+  setActive,
+  edit,
+  setEdit,
+  setUpdate,
+  handleUpdateTask,
+}: ILists) => {
   const paintCell = (index: number) => {
     if (index % 2 === 0) {
       return true;
@@ -36,6 +49,11 @@ const List = ({items, handleDeleteItem, active, setActive}: ILists) => {
           setActive={setActive}
           // @ts-ignore
           onPress={() => handleDeleteItem(item.id)}
+          edit={edit}
+          setEdit={setEdit}
+          setUpdate={setUpdate}
+          // @ts-ignore
+          handleUpdateTask={() => handleUpdateTask(item.id)}
         />
       )}
     />
